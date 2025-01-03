@@ -18,13 +18,13 @@ Follow these steps to set up the project locally:
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/yourusername/real-time-chat-api.git
+   git clone https://github.com/kingportipher/RealTimeChat.git
    ```
 
 2. **Navigate to the Project Directory**:
 
    ```bash
-   cd real-time-chat-api
+   cd RealTimeChat
    ```
 
 3. **Install Dependencies**:
@@ -190,13 +190,6 @@ We welcome contributions to the Real-Time Chat API project! Follow these steps t
 
 ---
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-Happy Coding!
 
 
 
