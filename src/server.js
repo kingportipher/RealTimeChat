@@ -1,24 +1,28 @@
-const server = require('./app');
-
-const PORT = process.env.PORT || 3000;
-
+require('dotenv').config();
 const express = require('express');
+const mongoose = require('mongoose');
+const http = require('http');
+const { Server } = require('socket.io');
+const dbConnect = require('./config/db');
+const authRoutes = require('./routes/auth');
+const messageRoutes = require('./routes/message');
+const { socketHandler } = require('./routes/socket');
+
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
 
-// Import routes
-const authRoutes = require('./routes/authRoutes');
-const messageRoutes = require('./routes/messageRoutes');
-
-// Middleware for JSON parsing
+// Middleware
 app.use(express.json());
+dbConnect();
 
-// Use routes
+// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/messages', messageRoutes);
 
-module.exports = app;
+// Socket.IO
+socketHandler(io);
 
-
-server.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// Start Server
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
